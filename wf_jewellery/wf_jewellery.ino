@@ -37,9 +37,7 @@ void setup()  {
 // the loop routine runs over and over again forever:
 void loop()  { 
   //00:10 personal, Speed 5
-  analogWrite( ledR, personal[0] );
-  analogWrite( ledG, personal[1] );
-  analogWrite( ledB, personal[2] );
+  blink( personal, 5, 5000 );
 
   // 00:15 pause
   delay( 5000 );
@@ -49,9 +47,7 @@ void loop()  {
   // 00:20 pause
 
   // 00:20 shared, speed 4 
-  analogWrite( ledR, shared[0] );
-  analogWrite( ledG, shared[1]);
-  analogWrite( ledB, shared[2] );
+  blink( shared, 4, 5000 );
 
   // 00:10 pause
   delay( 5000 );
@@ -61,9 +57,8 @@ void loop()  {
   // 00:10 pause
 
   // 00:20 RGB: 89, 233, 176, speed 3
-  analogWrite( ledR, remembrance[0] );
-  analogWrite( ledG, remembrance[1]);
-  analogWrite( ledB, remembrance[2] );
+  blink( remembrance, 3, 5000 );
+  
   // 00:15 pause
   delay( 5000 );
 
@@ -73,6 +68,15 @@ void loop()  {
    analogWrite( ledB, 255 );
    //00:15 pause
    delay( 9000 );*/
+}
+
+// blink at given colour (int []), speed and duration (ms)
+void blink(int* c, int speed, int duration) {
+  int i;
+  
+  analogWrite( ledR, c[0] );
+  analogWrite( ledG, c[1] );
+  analogWrite( ledB, c[2] );
 }
 
 

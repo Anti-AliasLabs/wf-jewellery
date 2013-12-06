@@ -37,34 +37,35 @@ void setup()  {
 // the loop routine runs over and over again forever:
 void loop()  { 
   //00:10 personal, speed 5
-  blink( personal, 5, 10000 );
+  fade( personal, 5, 10000 );
 
   // 00:15 pause
   delay( 15000 );
-
+ 
   // 00:25 personal, speed 2
-  blink( personal, 2, 25000 );
-
-  // 00:20 pause
-  delay( 20000 );
-
-  // 00:20 shared, speed 4 
-  blink( shared, 4, 20000 );
-
-  // 00:10 pause
-  delay( 10000 );
-
-  // 00:15 personal, speed 1
-  blink( personal, 1, 15000 );
-
-  // 00:10 pause
-  delay( 10000 );
-
-  // 00:20 remembrance, speed 3
-  blink( remembrance, 3, 20000 );
-
-  // 00:15 pause
-  delay( 15000 );
+   fade( personal, 2, 25000 );
+   
+   // 00:20 pause
+   delay( 20000 );
+   
+   // 00:20 shared, speed 4 
+   fade( shared, 4, 20000 );
+   
+   // 00:10 pause
+   delay( 10000 );
+   
+   // 00:15 personal, speed 1
+   fade( personal, 1, 15000 );
+   
+   // 00:10 pause
+   delay( 10000 );
+   
+   // 00:20 remembrance, speed 3
+   fade( remembrance, 3, 20000 );
+   
+   // 00:15 pause
+   delay( 15000 );
+   
 }
 
 // blink at given colour (int []), speed and duration (ms)
@@ -89,16 +90,40 @@ void blink(int* c, int sp, int duration) {
   }
 }
 
+// fade on and off
+// at given colour (int []), speed and duration (ms)
+void fade(int* c, int sp, int duration) {
+  int i, j;
+  // calculate speed of blinking
+  int pause = (6-sp) * 200;
+  // calculate how many repetitions for given duration
+  int reps = duration/(pause*2);
 
+  for( i=0; i<reps; i++) {
+    for( j=0; j<255; j++) {
+      int r = map( j, 0, 255, 0, c[0] );
+      int g = map( j, 0, 255, 0, c[1] );
+      int b = map( j, 0, 255, 0, c[2] );
 
+      analogWrite( ledR, r );
+      analogWrite( ledG, g );
+      analogWrite( ledB, b );
+    }
+    delay( pause );
+    for( j=255; j>0; j--) {
+      int r = map( j, 0, 255, 0, c[0] );
+      int g = map( j, 0, 255, 0, c[1] );
+      int b = map( j, 0, 255, 0, c[2] );
 
-
-
-
-
-
-
-
-
+      analogWrite( ledR, r );
+      analogWrite( ledG, g );
+      analogWrite( ledB, b );
+    }
+    analogWrite( ledR, 0 );
+    analogWrite( ledG, 0 );
+    analogWrite( ledB, 0 );
+    delay( pause );
+  }
+}
 
 

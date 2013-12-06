@@ -36,48 +36,63 @@ void setup()  {
 
 // the loop routine runs over and over again forever:
 void loop()  { 
-  //00:10 personal, Speed 5
-  blink( personal, 5, 5000 );
+  //00:10 personal, speed 5
+  blink( personal, 5, 10000 );
 
   // 00:15 pause
-  delay( 5000 );
-  // 00:25 RGB: 255, 88, 81, speed 2
+  delay( 15000 );
 
+  // 00:25 personal, speed 2
+  blink( personal, 2, 25000 );
 
   // 00:20 pause
+  delay( 20000 );
 
   // 00:20 shared, speed 4 
-  blink( shared, 4, 5000 );
+  blink( shared, 4, 20000 );
 
   // 00:10 pause
-  delay( 5000 );
+  delay( 10000 );
 
-  // 00:15 RGB: 255, 88, 81, speed 1
+  // 00:15 personal, speed 1
+  blink( personal, 1, 15000 );
 
   // 00:10 pause
+  delay( 10000 );
 
-  // 00:20 RGB: 89, 233, 176, speed 3
-  blink( remembrance, 3, 5000 );
-  
+  // 00:20 remembrance, speed 3
+  blink( remembrance, 3, 20000 );
+
   // 00:15 pause
-  delay( 5000 );
-
-  // 00:05 RGB: 91, 0, 255, speed 5
-  /*analogWrite( ledR, 70 );
-   analogWrite( ledG, 0);
-   analogWrite( ledB, 255 );
-   //00:15 pause
-   delay( 9000 );*/
+  delay( 15000 );
 }
 
 // blink at given colour (int []), speed and duration (ms)
-void blink(int* c, int speed, int duration) {
+void blink(int* c, int sp, int duration) {
   int i;
-  
-  analogWrite( ledR, c[0] );
-  analogWrite( ledG, c[1] );
-  analogWrite( ledB, c[2] );
+  // calculate speed of blinking
+  int pause = (6-sp) * 200;
+  // calculate how many repetitions for given duration
+  int reps = duration/(pause*2);
+
+  for( i=0; i<reps; i++) {
+    analogWrite( ledR, c[0] );
+    analogWrite( ledG, c[1] );
+    analogWrite( ledB, c[2] );
+
+    delay( pause );
+
+    analogWrite( ledR, 0 );
+    analogWrite( ledG, 0 );
+    analogWrite( ledB, 0 );
+    delay( pause );
+  }
 }
+
+
+
+
+
 
 
 

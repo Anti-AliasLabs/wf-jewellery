@@ -41,31 +41,31 @@ void loop()  {
 
   // 00:15 pause
   delay( 15000 );
- 
+
   // 00:25 personal, speed 2
-   fade( personal, 2, 25000 );
-   
-   // 00:20 pause
-   delay( 20000 );
-   
-   // 00:20 shared, speed 4 
-   fade( shared, 4, 20000 );
-   
-   // 00:10 pause
-   delay( 10000 );
-   
-   // 00:15 personal, speed 1
-   fade( personal, 1, 15000 );
-   
-   // 00:10 pause
-   delay( 10000 );
-   
-   // 00:20 remembrance, speed 3
-   fade( remembrance, 3, 20000 );
-   
-   // 00:15 pause
-   delay( 15000 );
-   
+  fade( personal, 2, 25000 );
+
+  // 00:20 pause
+  delay( 20000 );
+
+  // 00:20 shared, speed 4 
+  fade( shared, 4, 20000 );
+
+  // 00:10 pause
+  delay( 10000 );
+
+  // 00:15 personal, speed 1
+  fade( personal, 1, 15000 );
+
+  // 00:10 pause
+  delay( 10000 );
+
+  // 00:20 remembrance, speed 3
+  fade( remembrance, 3, 20000 );
+
+  // 00:15 pause
+  delay( 15000 );
+
 }
 
 // blink at given colour (int []), speed and duration (ms)
@@ -122,8 +122,9 @@ void fade(int* c, int sp, int duration) {
     analogWrite( ledR, 0 );
     analogWrite( ledG, 0 );
     analogWrite( ledB, 0 );
-    delay( pause );
+    delay( pause/2 );
   }
 }
+
 
 
